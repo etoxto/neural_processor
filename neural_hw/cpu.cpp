@@ -3,25 +3,25 @@
 #include "addr.h"
 
 CPU::CPU(sc_module_name nm)
-    :sc_module(nm),
-    clk_i("clk_i"),
-    addr_bo("addr_bo"),
-    data_bi("data_bi"),
-    start_i("start_i"),
-    a_size_i("a_size_i"),
-    curr_neuron_i("curr_neuron_i"),
-    w_offset_i("w_offset_i"),
-    a_offset_i("a_offset_i"),
-    n_offset_i("n_offset_i"),
-    data_lmi("data_lmi"),
-    busy_bi("busy_bi"),
-    d_ready_i("d_ready_i"),
-    data_bo("data_bo"),
-    addr_lmo("addr_lmo"),
-    rd_lmo("rd_lmo"),
-    wr_o("wr_o"),
-    rd_o("rd_o"),
-    busy_o("busy_o")
+        :sc_module(nm),
+         clk_i("clk_i"),
+         addr_bo("addr_bo"),
+         data_bi("data_bi"),
+         start_i("start_i"),
+         a_size_i("a_size_i"),
+         curr_neuron_i("curr_neuron_i"),
+         w_offset_i("w_offset_i"),
+         a_offset_i("a_offset_i"),
+         n_offset_i("n_offset_i"),
+         data_lmi("data_lmi"),
+         busy_bi("busy_bi"),
+         d_ready_i("d_ready_i"),
+         data_bo("data_bo"),
+         addr_lmo("addr_lmo"),
+         rd_lmo("rd_lmo"),
+         wr_o("wr_o"),
+         rd_o("rd_o"),
+         busy_o("busy_o")
 {
     addr_bo.initialize(0);
     addr_lmo.initialize(0);

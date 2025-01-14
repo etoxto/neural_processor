@@ -24,7 +24,7 @@ SC_MODULE(LocalMem)
     void bus_read();
 
 private:
-    float mem[533];
+    float mem[268];
 };
 
 

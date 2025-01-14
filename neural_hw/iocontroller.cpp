@@ -4,16 +4,16 @@
 #include <iostream>
 
 IOController::IOController(sc_module_name nm)
-    :sc_module(nm),
-    clk_i("clk_i"),
-    addr_bo("addr_bo"),
-    data_bi("data_bi"),
-    data_bo("data_bo"),
-    cu_wr_i("wr_i"),
-    cu_rd_i("rd_i"),
-    wr_bo("wr_o"),
-    rd_bo("rd_o"),
-    busy_o("busy_o")
+        :sc_module(nm),
+         clk_i("clk_i"),
+         addr_bo("addr_bo"),
+         data_bi("data_bi"),
+         data_bo("data_bo"),
+         cu_wr_i("wr_i"),
+         cu_rd_i("rd_i"),
+         wr_bo("wr_o"),
+         rd_bo("rd_o"),
+         busy_o("busy_o")
 {
     addr_bo.initialize(0);
     data_bo.initialize(0);
@@ -21,7 +21,7 @@ IOController::IOController(sc_module_name nm)
     rd_bo.initialize(0);
     busy_o.initialize(0);
 
-    config = read_file("/home/etoxto/Documents/itmo/ovs/neural_hw/data/initial_data_5.txt");
+    config = read_file("/home/etoxto/Documents/itmo/ovs/neural_hw/data/initial_data.txt");
 
     SC_THREAD(smem_write_initial_data);
     sensitive << cu_wr_i.pos();
@@ -105,18 +105,18 @@ NetConfig IOController::read_file(const std::string& path) {
 
     std::vector<float> inputs(49);
     std::vector<int> layer_neurons_amount(3);
-    std::vector<float> weights(533);
+    std::vector<float> weights(268);
 
     if (in.is_open()) {
-        for (size_t i = 0; i < 49; i++) {
+        for (size_t i = 0; i < 49; ++i) {
             in >> inputs[i];
         }
 
-        for (size_t i = 0; i < 3; i++) {
+        for (size_t i = 0; i < 3; ++i) {
             in >> layer_neurons_amount[i];
         }
 
-        for (size_t i = 0; i < 533; i++) {
+        for (size_t i = 0; i < 268; ++i) {
             in >> weights[i];
         }
     }
@@ -124,11 +124,4 @@ NetConfig IOController::read_file(const std::string& path) {
     return NetConfig(inputs, 3, layer_neurons_amount, weights);
 }
 
-void IOController::print_result() {
-    std::cout << "print";
-      std::vector<float> result(3);
-      for (size_t i = 0; i < 3; ++i) {
-          result[i] = bus_read(ACTIVATION_DATA_ADDR + 49 + 5 + i);
-          std::cout << result[i];
-      }
-}
+void IOController::print_result() {}
